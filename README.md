@@ -11,9 +11,9 @@ Link: [mattgruter/artifactory](https://registry.hub.docker.com/u/mattgruter/arti
 ## Volumes
 Artifactories `data`, `logs` and `backup` directories are exported as volumes:
 
-    <USER_HOME>/docker/data/artifactory/data
-    <USER_HOME>/docker/data/artifactory/logs
-    <USER_HOME>/docker/data/artifactory/backup
+    /artifactory/data
+    /artifactory/logs
+    /artifactory/backup
 
 ## Ports
 The service is exposed through port `8081`.
@@ -21,7 +21,7 @@ The service is exposed through port `8081`.
 ## Example
 To run artifactory do:
 
-    docker run -p 18081:8081 amesken/artifactory
+    sudo docker run -P -v /srv/docker/artifactory/data:/artifactory/data -v /srv/docker/artifactory/logs:/artifactory/logs -v /srv/docker/artifactory/backup:/artifactory/backup semoncat/artifactory
 
 Now point your browser to http://192.168.99.100:18081/artifactory
 

@@ -4,8 +4,8 @@ MAINTAINER Andries Mesken <andries.mesken@ziggo.nl>
 
 # To update, check https://bintray.com/jfrog/artifactory/jfrog-artifactory-oss-zip/view (or for pro version
 #  https://bintray.com/jfrog/artifactory-pro/jfrog-artifactory-pro-zip/view)
-ENV ARTIFACTORY_VERSION 4.3.0
-ENV ARTIFACTORY_SHA1 e8f558dcf0ebae02c54cf82ebbcfbf7563bba492
+ENV ARTIFACTORY_VERSION 4.4.3
+ENV ARTIFACTORY_SHA1 4e6387095f6545c41c342a018c156f0a3751b177
 
 # Disable Tomcat's manager application.
 RUN rm -rf webapps/*
@@ -36,14 +36,9 @@ RUN echo 'export CATALINA_OPTS="$RUNTIME_OPTS"' > bin/setenv.sh
 RUN mkdir -p /artifactory
 ENV ARTIFACTORY_HOME /artifactory
 
-# creeer en zet rechten op local data folders
-RUN mkdir -p /c/Users/Andries/docker/data/artifactory/data && chmod 777 /c/Users/Andries/docker/data/artifactory/data && \
-  mkdir -p /c/Users/Andries/docker/data/artifactory/logs && chmod 777 /c/Users/Andries/docker/data/artifactory/logs && \
-  mkdir -p /c/Users/Andries/docker/data/artifactory/backup && chmod 777 /c/Users/Andries/docker/data/artifactory/backup
-  
 # Expose Artifactories data, log and backup directory.
 VOLUME ["$ARTIFACTORY_HOME/data", "$ARTIFACTORY_HOME/logs", "$ARTIFACTORY_HOME/backup"]
 
 WORKDIR $ARTIFACTORY_HOME
 
-EXPOSE 8081
+EXPOSE 8080
